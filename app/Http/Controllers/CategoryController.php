@@ -12,7 +12,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::orderBy('created_at', 'desc')->paginate(10);
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -20,7 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -28,7 +29,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validasi input
+        $validated = $request->validate([
+            'category_name' => 'required|string|max:128|unique:categories,category_name',
+            'description' => 'required|string',
+        ]);
+
+        // simpan data
+        Category::create($validated);
+
+        // redirect dengan pesan sukses
+        return redirect('/categories')->with('success', 'Category berhasil ditambahkan.');
     }
 
     /**
@@ -36,7 +47,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('categories.show', compact('category'));
     }
 
     /**
@@ -44,7 +55,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -52,7 +63,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        // validasi input
+        $validated = $request->validate([
+            'category_name' => 'required|string|max:128|unique:categories,category_name,' . $category->id,
+            'description' => 'required|string',
+        ]);
+
+        // update data
+        $category->update($validated);
+
+        // redirect dengan pesan sukses
+        return redirect('/categories')->with('success', 'Category berhasil diupdate.');
     }
 
     /**
@@ -60,6 +81,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect('/categories')->with('success', 'Category berhasil dihapus.');
     }
 }
