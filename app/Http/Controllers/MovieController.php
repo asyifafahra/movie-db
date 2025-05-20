@@ -11,11 +11,22 @@ use Illuminate\Support\Facades\Storage;
 class MovieController extends Controller
 {
     // Tampilkan daftar movie
+    public function home1()
+    {
+
+         $movies = Movie::latest()->paginate(6); // contoh 6 per halaman
+        return view('layouts.home', compact('movies') );
+    }
+
     public function index()
     {
         $movies = Movie::with('category')->paginate(10);
         return view('movie.index', compact('movies'));
+
+
     }
+
+
 
     // Tampilkan form tambah movie
     public function create()
