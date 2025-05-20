@@ -22,3 +22,6 @@ Route::resource('movies', MovieController::class);
 Route::resource('categories', CategoryController::class);
 
 
+Route::get('/movie/{id}/{slug}', [MovieController::class, 'detail'])->name('movie.detail');
+
+

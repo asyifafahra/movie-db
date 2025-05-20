@@ -14,19 +14,28 @@ class MovieController extends Controller
     public function home1()
     {
 
-         $movies = Movie::latest()->paginate(6); // contoh 6 per halaman
-        return view('layouts.home', compact('movies') );
+        $movies = Movie::latest()->paginate(6); // contoh 6 per halaman
+        return view('layouts.home', compact('movies'));
     }
+
+
+    public function detail($id, $slug)
+    {
+        $movie = Movie::find($id);
+        return view('layouts.detailmovie', compact('movie'));
+    }
+
+    //    public function show(Movie $movie)
+    //     {
+    //         return view('movie.show', compact('movies'));
+    //     }
+
 
     public function index()
     {
         $movies = Movie::with('category')->paginate(10);
         return view('movie.index', compact('movies'));
-
-
     }
-
-
 
     // Tampilkan form tambah movie
     public function create()

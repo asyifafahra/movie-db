@@ -16,6 +16,6 @@
     @endif
 
     <br><br>
-    <a href="{{ route('movies.index') }}" class="btn btn-secondary">Kembali ke Daftar Film</a>
+    <a href="{{ route('movie.index') }}" class="btn btn-secondary">Kembali ke Daftar Film</a>
 </div>
 @endsection
