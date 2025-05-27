@@ -12,7 +12,7 @@
 
             <!-- Judul -->
             <div class="mb-3">
-                <label for="title" class="form-label">Judul</label>
+                <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
                     value="{{ old('title', $movie->title) }}" required>
                 @error('title')
@@ -32,7 +32,7 @@
 
             <!-- Kategori -->
             <div class="mb-3">
-                <label for="category_id" class="form-label">Kategori</label>
+                <label for="category_id" class="form-label">Category</label>
                 <select class="form-select @error('category_id') is-invalid @enderror" id="category_id" name="category_id"
                     required>
                     <option value="">-- Pilih Kategori --</option>
@@ -50,7 +50,7 @@
 
             <!-- Tahun -->
             <div class="mb-3">
-                <label for="year" class="form-label">Tahun</label>
+                <label for="year" class="form-label">Year</label>
                 <input type="number" class="form-control @error('year') is-invalid @enderror" id="year" name="year"
                     value="{{ old('year', $movie->year) }}" required min="1900" max="{{ date('Y') }}">
                 @error('year')
@@ -60,7 +60,7 @@
 
             <!-- Pemeran -->
             <div class="mb-3">
-                <label for="actors" class="form-label">Pemeran</label>
+                <label for="actors" class="form-label">Actor</label>
                 <textarea class="form-control @error('actors') is-invalid @enderror" id="actors" name="actors" rows="3">{{ old('actors', $movie->actors) }}</textarea>
                 @error('actors')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -69,7 +69,7 @@
 
             <!-- Sinopsis -->
             <div class="mb-3">
-                <label for="synopsis" class="form-label">Sinopsis</label>
+                <label for="synopsis" class="form-label">Synopsis</label>
                 <textarea class="form-control @error('synopsis') is-invalid @enderror" id="synopsis" name="synopsis" rows="4">{{ old('synopsis', $movie->synopsis) }}</textarea>
                 @error('synopsis')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -78,7 +78,7 @@
 
             <!-- Cover Image -->
             <div class="mb-3">
-                <label for="cover_image" class="form-label">Gambar Cover</label>
+                <label for="cover_image" class="form-label">Cover Image</label>
                 @if ($movie->cover_image)
                     <div class="mb-2">
                         <img src="{{ asset('storage/' . $movie->cover_image) }}" alt="Cover Image" width="150">

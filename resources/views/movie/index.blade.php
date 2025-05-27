@@ -5,7 +5,7 @@
 @section('content')
     <div class="container mt-4">
         <h1>Daftar Film</h1>
-        <a href="{{ route('movies.create') }}" class="btn btn-primary mb-3">Tambah Film</a>
+        <a href="{{ route('movies.create') }}" class="btn btn-primary mb-3">Input New Movie</a>
 
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
@@ -14,10 +14,10 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Judul</th>
-                    <th>Kategori</th>
-                    <th>Tahun</th>
-                    <th>Aksi</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Year</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>

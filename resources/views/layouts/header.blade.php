@@ -12,7 +12,7 @@
                         <a class="nav-link @yield('navhome')" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @yield('navMovie')" href="{{ url('/movies') }}">Movies</a>
+                        <a class="nav-link @yield('navMovie')" href="{{ url('/movies') }}">Input Movie</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link @yield('navCategories')" href="{{ url('/categories') }}">Categories</a>
