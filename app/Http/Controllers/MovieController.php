@@ -113,7 +113,7 @@ class MovieController extends Controller
    public function destroy(Movie $movie)
 {
     if (!Gate::allows('delete', $movie)) {
-        abort(403, 'Anda tidak memiliki izin untuk menghapus film ini.');
+        abort(403, 'Anda tidak memiliki akses untuk menghapus film ini.');
     }
 
     if ($movie->cover_image && Storage::disk('public')->exists($movie->cover_image)) {
