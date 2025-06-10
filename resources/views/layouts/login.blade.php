@@ -46,7 +46,7 @@
                     id="remember"
                     name="remember"
                 >
-                <label class="form-check-label" for="remember">Remember me</label>
+                <label class="form-check-label" for="remember">Remember mee</label>
             </div>
 
             <button type="submit" class="btn btn-primary w-100">Login</button>
