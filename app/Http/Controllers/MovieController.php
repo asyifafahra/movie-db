@@ -59,7 +59,7 @@ class MovieController extends Controller
 
         // Upload cover image jika ada
         if ($request->hasFile('cover_image')) {
-            $path = $request->file('cover_image')->store('cover_images', 'public');
+            $path = $request->file('cover_images')->store('cover_images', 'public');
             $validated['cover_image'] = $path;
         }
 

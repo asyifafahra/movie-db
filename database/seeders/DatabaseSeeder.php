@@ -23,10 +23,10 @@ class DatabaseSeeder extends Seeder
 
         // $this->call(CategorySeeder::class);
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+         User::factory(3)->create();
+        //  'name' => 'Test User',
+        //      'email' => 'test@example.com',
+
 
 
         DB::table('categories')->insert([
