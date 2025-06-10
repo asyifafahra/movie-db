@@ -29,17 +29,21 @@
                         <td>{{ $movie->category->category_name ?? '-' }}</td>
                         <td>{{ $movie->year }}</td>
                         <td>
-                            <a href="{{ route('movie.detail', ['id' => $movie->id, 'slug' => $movie->slug]) }}" class="btn btn-info btn-sm">Show</a>
+                            <a href="{{ route('movie.detail', ['id' => $movie->id, 'slug' => $movie->slug]) }}"
+                                class="btn btn-info btn-sm">Show</a>
                             <a href="{{ route('movies.edit', $movie->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
-                            
 
-                            <form action="{{ route('movies.destroy', $movie->id) }}" method="POST"
-                                style="display:inline-block;" onsubmit="return confirm('Yakin hapus film ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                            </form>
+
+                            @can('delete', $movie)
+                                <form action="{{ route('movies.destroy', $movie->id) }}" method="POST"
+                                    style="display:inline-block;" onsubmit="return confirm('Yakin hapus film ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                </form>
+                            @endcan
+
                         </td>
                     </tr>
                 @empty

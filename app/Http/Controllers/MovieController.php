@@ -7,6 +7,8 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
+
 
 class MovieController extends Controller
 {
@@ -108,15 +110,19 @@ class MovieController extends Controller
         return redirect()->route('movies.index')->with('success', 'Film berhasil diupdate.');
     }
 
-    // Hapus movie
-    public function destroy(Movie $movie)
-    {
-        // Hapus cover image juga jika ada
-        if ($movie->cover_image && Storage::disk('public')->exists($movie->cover_image)) {
-            Storage::disk('public')->delete($movie->cover_image);
-        }
-        $movie->delete();
-
-        return redirect()->route('movies.index')->with('success', 'Film berhasil dihapus.');
+   public function destroy(Movie $movie)
+{
+    if (!Gate::allows('delete', $movie)) {
+        abort(403, 'Anda tidak memiliki izin untuk menghapus film ini.');
     }
+
+    if ($movie->cover_image && Storage::disk('public')->exists($movie->cover_image)) {
+        Storage::disk('public')->delete($movie->cover_image);
+    }
+
+    $movie->delete();
+
+    return redirect()->route('movies.index')->with('success', 'Film berhasil dihapus.');
 }
+}
+
